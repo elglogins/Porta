@@ -1,6 +1,13 @@
 ﻿using Microsoft.AspNetCore.Http;
+using Newtonsoft.Json;
+using Porta.Extensions;
+using Porta.Interfaces.Models;
 using Porta.Interfaces.Repositories;
+using System;
+using System.Collections.Generic;
+using System.IO;
 using System.Linq;
+using System.Net.Http;
 using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 
@@ -26,17 +33,45 @@ namespace Porta.Middlewares
                 return;
 
             var matches = matchingRouteConfiguration.LookupRegex.Match(context.Request.Path.Value);
-            for (int i=0; i<matches.Groups.Count; i++)
+            var parameters = matches.Groups
+                .Cast<Group>()
+                .Skip(1);
+
+            var tasks = new List<Task<object>>();
+            foreach(var targetRequestMapping in matchingRouteConfiguration.TargetMapping)
+                tasks.Add(Request(targetRequestMapping, parameters));
+
+            var results = await Task.WhenAll(tasks);
+            context.Response.ContentType = "application/json";
+            using (var writer = new StreamWriter(context.Response.Body))
             {
-                if (i == 0)
-                    continue; // skip first, as it is overall match
-
-                Group match = matches.Groups[i];
+                new JsonSerializer().Serialize(writer, results);
+                await writer.FlushAsync().ConfigureAwait(false);
             }
-
-            await _next(context);
         }
 
-      
+        private async Task<object> Request(ITargetRequestMappingModel mappingModel, IEnumerable<Group> parameters)
+        {
+            var targetPathReplacables = mappingModel.Template.ReplacePlaceholderValues(parameters);
+            var uri = mappingModel.Resources.First(); // TODO: if multiple
+            var url = $"{uri.Protocol.ToString().ToLower()}://{uri.Host}{(uri.Port.HasValue ? $":{uri.Port.Value}" : "")}{targetPathReplacables}";
+
+            try
+            {
+                using (HttpClient client = new HttpClient())
+                {
+                    using (HttpResponseMessage res = await client.GetAsync(new Uri(url)))
+                    using (HttpContent content = res.Content)
+                    {
+                        string data = await content.ReadAsStringAsync();
+                        return JsonConvert.DeserializeObject<object>(data);
+                    }
+                }
+            }
+            catch(Exception e)
+            {
+                return null;
+            }
+        }
     }
 }

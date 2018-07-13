@@ -1,4 +1,5 @@
-﻿using Porta.Interfaces.Models;
+﻿using Porta.Extensions;
+using Porta.Interfaces.Models;
 using Porta.Interfaces.Repositories;
 using Porta.Models;
 using System.Collections.Generic;
@@ -21,15 +22,16 @@ namespace Porta.Repositories
             var routes = _routesRepository.GetAll();
             return routes.Select(c=> new LookupRouteModel()
             {
-                LookupRegex = new Regex(Interpolate(c.Template)),
-                Template = c.Template,
-                TargetMapping = c.TargetMapping
+                LookupRegex = new Regex(Interpolate(c.RequestTemplate)),
+                RequestTemplate = c.RequestTemplate,
+                TargetMapping = c.TargetMapping,
+                RequestType = c.RequestType
             });
         }
 
         private string Interpolate(string template)
         {
-            var replacables = GetReplacables(template);
+            var replacables = template.GetReplacables();
             var newText = $"^{template}$";
             var first = true;
 
@@ -42,15 +44,6 @@ namespace Porta.Repositories
 
             newText = newText.Replace("/", "\\/");
             return newText;
-        }
-
-        private Dictionary<string, string> GetReplacables(string text)
-        {
-            return Regex.Matches(text, "{.*?}")
-                .Cast<Match>()
-                .Select(m => m.Value)
-                .Distinct()
-                .ToDictionary(c => c, c => c.Replace("{", "").Replace("}", ""));
         }
     }
 }

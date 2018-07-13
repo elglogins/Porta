@@ -1,9 +1,14 @@
-﻿namespace Porta.Interfaces.Models
+﻿using Porta.Interfaces.Enums;
+using System.Collections.Generic;
+
+namespace Porta.Interfaces.Models
 {
     public interface IRouteModel
     {
-        string Template { get; set; }
+        string RequestTemplate { get; set; }
 
-        string TargetMapping { get; set; }
+        IEnumerable<ITargetRequestMappingModel> TargetMapping { get; set; }
+
+        RequestType RequestType { get; set; }
     }
 }

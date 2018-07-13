@@ -13,3 +13,9 @@
 Porta/bin/
 Porta/obj/
 Porta/.vs/
+Porta/Porta.Test.Customers/obj/
+Porta/Porta.Test.Orders/bin/
+Porta/Porta.Test.Orders/obj/
+Porta/Porta/bin/
+Porta/Porta.Interfaces/bin/
+Porta/Porta.Test.Customers/bin/

@@ -3,13 +3,17 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 15
 VisualStudioVersion = 15.0.27703.2035
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Porta", "Porta\Porta.csproj", "{C7E76299-FE95-447A-8525-4575F4A62EE8}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Porta", "Porta\Porta.csproj", "{C7E76299-FE95-447A-8525-4575F4A62EE8}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Porta.Interfaces", "Porta.Interfaces\Porta.Interfaces.csproj", "{05F89A36-A1AB-4831-8EDC-D9414220BFF6}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Porta.Interfaces", "Porta.Interfaces\Porta.Interfaces.csproj", "{05F89A36-A1AB-4831-8EDC-D9414220BFF6}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Porta.Test.Gateway", "Porta.Test.Gateway\Porta.Test.Gateway.csproj", "{57928E39-8133-42C3-A44B-A883E94CD9AB}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Porta.Test.Gateway", "Porta.Test.Gateway\Porta.Test.Gateway.csproj", "{57928E39-8133-42C3-A44B-A883E94CD9AB}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Test", "Test", "{0CA56497-FACC-4232-B16D-7FDDD24F10C3}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Porta.Test.Customers", "Porta.Test.Customers\Porta.Test.Customers.csproj", "{1B33DA54-9C69-4F61-A17D-81594436B496}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Porta.Test.Orders", "Porta.Test.Orders\Porta.Test.Orders.csproj", "{AB6F452B-4724-4686-80A8-F9C27B7D3B38}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -29,12 +33,22 @@ Global
 		{57928E39-8133-42C3-A44B-A883E94CD9AB}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{57928E39-8133-42C3-A44B-A883E94CD9AB}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{57928E39-8133-42C3-A44B-A883E94CD9AB}.Release|Any CPU.Build.0 = Release|Any CPU
+		{1B33DA54-9C69-4F61-A17D-81594436B496}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{1B33DA54-9C69-4F61-A17D-81594436B496}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{1B33DA54-9C69-4F61-A17D-81594436B496}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{1B33DA54-9C69-4F61-A17D-81594436B496}.Release|Any CPU.Build.0 = Release|Any CPU
+		{AB6F452B-4724-4686-80A8-F9C27B7D3B38}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{AB6F452B-4724-4686-80A8-F9C27B7D3B38}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{AB6F452B-4724-4686-80A8-F9C27B7D3B38}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{AB6F452B-4724-4686-80A8-F9C27B7D3B38}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
 	EndGlobalSection
 	GlobalSection(NestedProjects) = preSolution
 		{57928E39-8133-42C3-A44B-A883E94CD9AB} = {0CA56497-FACC-4232-B16D-7FDDD24F10C3}
+		{1B33DA54-9C69-4F61-A17D-81594436B496} = {0CA56497-FACC-4232-B16D-7FDDD24F10C3}
+		{AB6F452B-4724-4686-80A8-F9C27B7D3B38} = {0CA56497-FACC-4232-B16D-7FDDD24F10C3}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {7C0B45AD-4F19-4E23-AEF9-BBAA31E78F52}
