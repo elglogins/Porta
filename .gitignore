@@ -1,0 +1,15 @@
+################################################################################
+# This .gitignore file was automatically created by Microsoft(R) Visual Studio.
+################################################################################
+
+/Porta/.vs/Porta/v15/Server/sqlite3
+/Porta/.vs/config
+/Porta/Porta/bin/Debug/netstandard2.0
+/Porta/Porta/obj
+/Porta/Porta.Interfaces/bin/Debug/netstandard2.0
+/Porta/Porta.Interfaces/obj
+/Porta/Porta.Test.Gateway/bin/Debug/netcoreapp2.1
+/Porta/Porta.Test.Gateway/obj
+Porta/bin/
+Porta/obj/
+Porta/.vs/
